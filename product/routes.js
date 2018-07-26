@@ -18,9 +18,12 @@ router.post('/', requireJwt, isPurchaser, (req, res) => {
 
 // READ all Products
 router.get('/', requireJwt, (req, res) => {
-    
+    console.log(req.headers.supplier_id)
     Product.find().then(
-        products => res.status(200).json(products)
+        products => {
+            const filteredOrders = products.filter(product => req.headers.supplier_id == product.companyId)
+            res.status(200).json(filteredOrders)
+        }
     ).catch(
         error => res.status(500).json({
             error: error.message
