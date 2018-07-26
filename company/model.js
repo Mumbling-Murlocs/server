@@ -5,8 +5,8 @@ const Schema = mongoose.Schema
 const Company = new Schema({
    name: String,
    abn: String,
-   businessType: String,
-   address: String,
+   companyType: String,
+   address: Schema.Types.Mixed,
    phoneNumber: String,
    accountType: String,
    supplierListID: String,

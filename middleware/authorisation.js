@@ -32,7 +32,7 @@ const accountOwner = (req, res, next) => {
 const belongsToCompany = (req, res, next) => {
     const {user, body} = req
   
-    if (isAdmin(user) || user.company._id == body.companyId) {
+    if (isAdmin(user) || user.company._id == body.ownerId) {
         next()
     } else {
         res.sendStatus(403)
@@ -53,7 +53,7 @@ const isPurchaser = (req, res, next) => {
     if (role === "purchaser") {
         res.sendStatus(403)
     } else {
-        next ()        
+        next()        
     }
 
 }
